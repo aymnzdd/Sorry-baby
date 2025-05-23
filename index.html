@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pour Hanaa 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Great Vibes', cursive;
+      background: radial-gradient(circle at top, #ffe6f0, #d4a5a5);
+      color: #660033;
+      text-align: center;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .container {
+      max-width: 700px;
+      padding: 2em;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(102, 0, 51, 0.3);
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .container.show {
+      opacity: 1;
+    }
+    h1 {
+      font-size: 4em;
+      margin-bottom: 0.2em;
+      letter-spacing: 0.05em;
+    }
+    p {
+      font-size: 1.7em;
+      line-height: 1.6em;
+      margin-bottom: 2em;
+    }
+    button {
+      padding: 0.8em 2.5em;
+      font-size: 1.3em;
+      border: none;
+      border-radius: 30px;
+      background-color: #ff99cc;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #ff4da6;
+    }
+
+    /* Douce animation des cœurs */
+    .heart {
+      position: fixed;
+      font-size: 1.2em;
+      animation: floatUp 6s infinite ease-in-out;
+      user-select: none;
+      pointer-events: none;
+      color: #ff4da6;
+      opacity: 0.7;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.7;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-150px) scale(1.2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container show" id="page">
+  <h1>Hanaa… 💖</h1>
+  <p>Ce n’était qu’un jeu, une blague douce.<br>Mais quand j’ai vu que ton cœur s’est fermé…<br>le mien s’est figé.</p>
+  <button onclick="nextPage()">Laisse-moi te parler…</button>
+</div>
+
+<script>
+  const pages = [
+    {
+      title: "Hanaa… 💖",
+      text: "Ce n’était qu’un jeu, une blague douce. Mais quand j’ai vu que ton cœur s’est fermé… le mien s’est figé."
+    },
+    {
+      title: "Pardonne ma légèreté…",
+      text: "Je voulais juste faire un sorte de prank, pas te blesser. Je suis désolé, vraiment. Tu es la seule fille qui me fait battre le cœur comme ça."
+    },
+    {
+      title: "Une nuit sans toi…",
+      text: "Même les étoiles semblent tristes ce soir. J’espère qu’au réveil, tu verras que ce message est un câlin pour ton cœur baby."
+    },
+    {
+      title: "Je suis là, et j’attends.",
+      text: "Pas pour une réponse immédiate. Juste pour que tu saches que je tiens à toi. Plus que je ne saurais te le dire."
+    },
+    {
+      title: "💌 À toi, Hanaa,plutot habibi…",
+      text: "Si un jour tu doutes de moi, relis ce site. Ce n’est pas juste du code. C’est mon cœur qui parle, pour toi."
+    }
+  ];
+
+  let index = 0;
+
+  function nextPage() {
+    index = (index + 1) % pages.length;
+    const page = document.getElementById("page");
+    page.classList.remove("show");
+    setTimeout(() => {
+      page.innerHTML = `
+        <h1>${pages[index].title}</h1>
+        <p>${pages[index].text}</p>
+        <button onclick="nextPage()">Suivant</button>
+      `;
+      page.classList.add("show");
+    }, 500);
+  }
+
+  // Crée des cœurs flottants
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.top = (window.innerHeight + 20) + 'px';
+    heart.textContent = '💖';
+    document.body.appendChild(heart);
+
+    // Animation et suppression après fin
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }
+
+  setInterval(createHeart, 800);
+</script>
+
+</body>
+</html>
